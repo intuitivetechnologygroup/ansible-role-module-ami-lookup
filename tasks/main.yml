@@ -1,0 +1,9 @@
+---
+# tasks file for ansible-role-module-ami-lookup
+
+- name: call ami_lookup module
+  ami_lookup:
+    region: "{{ item.region|default('us-west-2') }}"
+    ami_name: "{{ item.ami_name|default(omit) }}"
+  with_items: "{{ ami |default([]) }}"
+  register: ami_lookup_result

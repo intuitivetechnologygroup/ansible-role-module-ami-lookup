@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  vars:
+    docker_tags: "{{lookup('env', 'DOCKER_TAGS')|default('my_test', true)}}"
+  tasks:
+    - name: run tests
+      shell: "docker build -t {{docker_tags}} ." 
