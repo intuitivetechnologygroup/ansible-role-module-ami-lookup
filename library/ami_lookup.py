@@ -19,13 +19,13 @@ def main():
             ami_name = dict(required=True, type='str')
         )
     )
-    
+
     ec2 =boto3.client('ec2', region_name=module.params.get('region'))
-    resp = ec2.describe_images( 
+    resp = ec2.describe_images(
         Owners=["self"],
         Filters=[
-            {"Name": "name", "Values": [ module.params.get('ami_name') ] }, 
-            { "Name":"state","Values":["available"] } 
+            {"Name": "name", "Values": [ module.params.get('ami_name') ] },
+            { "Name":"state","Values":["available"] }
         ]
     )
     images = {}
@@ -38,9 +38,9 @@ def main():
             Image=None,
             msg=(
                 "Failed to find any images owned by 'self' in region '%s' under name '%s'" % (
-                    module.params.get('ami_name'), module.params.get('region') 
-                ) 
-            ) 
+                    module.params.get('ami_name'), module.params.get('region')
+                )
+            )
         )
     else:
         sorted_image_keys = sorted(images.keys() )

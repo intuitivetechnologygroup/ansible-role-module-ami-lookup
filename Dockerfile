@@ -1,4 +1,4 @@
-FROM 209983464176.dkr.ecr.us-east-1.amazonaws.com/ansible 
+FROM simplyadrian/ansible
 
 ADD . /tmp/playbook
 WORKDIR /tmp/playbook
